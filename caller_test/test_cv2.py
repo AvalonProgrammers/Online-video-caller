@@ -15,7 +15,9 @@ print(
 print(
 np.array([
     [
-        [channelVal//20 for channelVal in rgb2hsv(*pix)] for pix in col
+        [
+            channelVal//20 for channelVal in rgb2hsv(*pix)
+        ] for pix in col
     ] for col in img
 ]))
 
@@ -25,7 +27,10 @@ np.array([
 # p1 p2 p3
 # p1 p2 p3
 
-cv2.imshow('frame', img)
+while True:
+    cv2.imshow('frame', img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
 cap.release()
 cv2.destroyAllWindows()
