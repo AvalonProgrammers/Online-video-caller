@@ -25,4 +25,10 @@ class VideoHandler:
         return msg
 
 class Addresser:
-    pass
+    def toSendableVideos(videos:dict) -> str:
+        sendable = ""
+        for idx, addr in enumerate(videos.keys()):
+            sendable += f"{addr}:{videos[addr]}"
+            if idx != len(videos.keys()) - 1:
+                sendable += ";"
+        return sendable
