@@ -4,7 +4,7 @@ from handle_msgs import *
 
 IP = getThisIP()
 
-myServer = Server(IP, 5050, 8)
+myServer = Server(IP, 5050, 10)
 latestVids = {}
 
 def encodeVids():
@@ -13,7 +13,8 @@ def encodeVids():
 def handleVideo(addr, conn, msg:str):
     if msg[0] == 'v':
         msg = msg[1:]
-        video = getVideo(msg)
-        latestVids[addr] = video
+        latestVids[addr] = msg
 
 myServer.onMessage(handleVideo)
+
+

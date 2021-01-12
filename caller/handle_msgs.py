@@ -1,11 +1,28 @@
 import numpy as np
 
-def getVideo(msg:str):
-    video = np.array(
-        [
+class VideoHandler:
+    def getVideo(msg:str) -> np.ndarray:
+        video = np.array(
             [
-                [int(n) for n in pix.split(' ')] for pix in col.split('|')
-            ] for col in msg.split('#') # Columns
-        ]
-    )
-    return video
+                [
+                    [int(n) for n in pix.split(' ')] for pix in row.split('|')
+                ] for row in msg.split('#') # Rows
+            ]
+        )
+        return video
+    def makeVideo(video:np.ndarray) -> str:
+        msg = ""
+        for rowIdx, row in enumerate(video):
+            for pixIdx, pix in enumerate(row):
+                for valIdx, val in enumerate(pix):
+                    msg += str(val)
+                    if valIdx != 2:
+                        msg += " "
+                if pixIdx != len(row) - 1:
+                    msg += "|"
+            if rowIdx != len(video) - 1:
+                msg += "#"
+        return msg
+
+class Addresser:
+    pass
